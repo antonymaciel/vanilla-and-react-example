@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vanilla</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+</head>
+<body class="container">
+  <h1>Vanilla JavaScript Todo App</h1>
+  <a href="./about.html">About</a>
+  <div id="app"></div>
+  <div id="hello-world"></div>
+  <script type="module" src="js/wrapper.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <!-- Cargamos nuestro componente de React. -->
+  <script type="text/javascript">
+    'use strict';
+    const element = React.createElement;
+    class LikeButton extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { liked: false };
+      }
+
+      render() {
+        if (this.state.liked) {
+          return 'You liked this.';
+        }
+        return element(
+          'button',
+          { onClick: () => this.setState({ liked: true }), style: { backgroundColor:'red'}, disabled: true},
+          element('div', {}, element('div', {}, this.props.text))
+        );
+      }
+    }
+    const domContainer = document.querySelector('#app');
+    const domContainerHello = document.querySelector('#hello-world');
+
+    ReactDOM.render(element(LikeButton, { text : 'button' }), domContainer);
+    ReactDOM.render(element(LikeButton, { text : 'button hello' }), domContainerHello);
+  </script>
+</body>
+</html>
